@@ -1,4 +1,6 @@
+import { getUserPlanLimits } from "@/lib/features";
 import { sanityFetch } from "@/sanity/lib/live";
+import { USER_CONNECTED_ACCOUNTS_DISPLAY_QUERY } from "@/sanity/queries/users";
 import { auth } from "@clerk/nextjs/server";
 
 async function SettingsPage() {
