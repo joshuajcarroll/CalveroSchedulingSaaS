@@ -1,9 +1,11 @@
-import { getUserPlanLimits } from "@/lib/features";
-import { sanityFetch } from "@/sanity/lib/live";
-import { USER_CONNECTED_ACCOUNTS_DISPLAY_QUERY } from "@/sanity/queries/users";
+import AccountManager from "@/components/settings/account-manager";
 import { auth } from "@clerk/nextjs/server";
 import { CreditCard } from "lucide-react";
 import Link from "next/link";
+
+import { getUserPlanLimits } from "@/lib/features";
+import { sanityFetch } from "@/sanity/lib/live";
+import { USER_CONNECTED_ACCOUNTS_DISPLAY_QUERY } from "@/sanity/queries/users";
 
 export default async function SettingsPage({
   searchParams,
@@ -59,11 +61,11 @@ export default async function SettingsPage({
         </div>
       )}
 
-      {/*<AccountManager
+      <AccountManager
         connectedAccounts={connectedAccounts}
         maxCalendars={planLimits.maxConnectedCalendars}
         plan={planLimits.plan}
-      />*/}
+      />
 
       {/* Billing Section */}
       <div className="mt-8 pt-8 border-t">
