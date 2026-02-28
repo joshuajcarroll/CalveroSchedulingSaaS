@@ -42,7 +42,7 @@ async function AvailabiltyPage() {
   // Transform to BookedBlock format
   const bookedBlocks: BookedBlock[] = activeBookings.map((booking) => ({
     id: booking._id,
-    start: new Date(booking.startTime),
+    start: new Date(booking.start),
     end: new Date(booking.endTime),
     guestName: booking.guestName,
     guestEmail: booking.guestEmail,
