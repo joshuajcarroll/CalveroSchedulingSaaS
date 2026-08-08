@@ -15,10 +15,14 @@ import type {
   BookedBlock,
 } from "@/components/calendar/types";
 
-async function AvailabiltyPage() {
+export default async function AvailabilityPage() {
   const { userId } = await auth();
 
-  //Fetch availability, bookings, and Google busy times in parallel
+  if (!userId) {
+    redirect("/");
+  }
+
+  // Fetch availability, bookings, and Google busy times in parallel
   const now = new Date();
   const rangeStart = startOfWeek(now);
   const rangeEnd = addWeeks(rangeStart, 8); // 8 weeks ahead
@@ -34,6 +38,7 @@ async function AvailabiltyPage() {
     }),
     getGoogleBusyTimes(rangeStart, rangeEnd),
   ]);
+
   const availability = user?.availability ?? [];
 
   // Process bookings with Google Calendar statuses
@@ -43,7 +48,7 @@ async function AvailabiltyPage() {
   const bookedBlocks: BookedBlock[] = activeBookings.map((booking) => ({
     id: booking._id,
     start: new Date(booking.startTime),
-    end: new Date(booking.endTime),
+    end: new Date(booking.end),
     guestName: booking.guestName,
     guestEmail: booking.guestEmail,
     googleEventId: booking.googleEventId ?? undefined,
@@ -80,7 +85,7 @@ async function AvailabiltyPage() {
     }));
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 max-sm:py-4">
+    <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 max-sm:py-4">
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold">Set Your Availability</h1>
@@ -127,8 +132,6 @@ async function AvailabiltyPage() {
         busyBlocks={initialBusyBlocks}
         bookedBlocks={bookedBlocks}
       />
-    </div>
+    </main>
   );
 }
-
-export default AvailabiltyPage;

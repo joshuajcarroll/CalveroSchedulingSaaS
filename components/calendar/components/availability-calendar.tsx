@@ -51,7 +51,9 @@ import type {
 } from "../types";
 import { isBusyBlock, isBookedBlock } from "../types";
 
+// @ts-ignore: side-effect import of CSS - declaration not available in this project
 import "react-big-calendar/lib/css/react-big-calendar.css";
+// @ts-ignore: side-effect import of CSS - declaration not available in this project
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 
 const DnDCalendar = withDragAndDrop<CalendarEvent>(Calendar);

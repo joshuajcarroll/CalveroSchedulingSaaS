@@ -8,7 +8,7 @@ import { QuotaExceeded } from "@/components/booking/quota-exceeded";
 import {
   computeAvailableDates,
   computeAvailableSlots,
-} from "@/lib/availability";
+} from "@/lib/availablity";
 import { getActivebookingIds } from "@/lib/actions/calendar";
 import { getGoogleBusyTimes } from "@/lib/actions/booking";
 import { getHostBookingQuotaStatus } from "@/lib/features";
